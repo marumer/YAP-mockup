@@ -1,0 +1,24 @@
+{
+  "name": "yap-mockup",
+  "version": "1.0.0",
+  "description": "Basic YAP mockup server to demonstrate the tool functionalities as default project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marumer/YAP-mockup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marumer/YAP-mockup/issues"
+  },
+  "homepage": "https://github.com/marumer/YAP-mockup#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "uuid": "^9.0.0"
+  }
+}
