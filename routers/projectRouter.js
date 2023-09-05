@@ -131,8 +131,10 @@ router.route("/:uuidProject/router/:uuidRouter/live-status/exec/any").post((req,
 
          const args = req.body.input.args.split(" ");
 
-         if (args.length !== 4 && args.length !== 2) {
-            res.status(500).json({ Error: "Supporting only 'ping <address>' and 'ping <address> source <address>'" });
+         if (args.length !== 4) {
+            res.status(500).json({
+               Error: "Mockedup support for 'ping <address> source <address>' command format",
+            });
          } else {
             // basic mockup assume the two interfaces are directly connected
             // check that args[1] interface exist and it is up
@@ -145,9 +147,7 @@ router.route("/:uuidProject/router/:uuidRouter/live-status/exec/any").post((req,
             let destinationIsUp = undefined;
 
             for (const router of projects[projectIndex].routers) {
-               console.log(router.intefaces);
                for (const interface of router.intefaces) {
-                  console.log(interface.ip, args[1]);
                   if (interface.ip.includes(args[1])) {
                      if ((interface.status = "up")) {
                         destinationIsUp = true;
@@ -161,12 +161,11 @@ router.route("/:uuidProject/router/:uuidRouter/live-status/exec/any").post((req,
             if (interfaceIndex !== -1 && destinationIsUp === true) {
                if (projects[projectIndex].routers[routerIndex].intefaces[interfaceIndex].status === "up") {
                   res.status(200).json({
-                     result: `Sending 5, 100-byte ICMP Echos to ${args[1]}, timeout is 2 seconds:\r\n!!!!!\r\nSuccess rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms`,
+                     result: `Sending 5, 100-byte ICMP Echos to ${args[1]}, timeout is 2 seconds: Success rate is 100 percent (5/5), round-trip min/avg/max = 3/3/4 ms`,
                   });
                } else {
                   res.status(200).json({
-                     result:
-                        "Sending 5, 100-byte ICMP Echos to ${args[1]}, timeout is 2 seconds:\r\n.....\r\nSuccess rate is 0 percent (0/5)",
+                     result: `Sending 5, 100-byte ICMP Echos to ${args[1]}, timeout is 2 seconds: ..... Success rate is 0 percent (0/5)`,
                   });
                }
             } else {
