@@ -10,8 +10,7 @@ if (process.argv.slice(2)[0] === "dev") {
 }
 
 const CORS_OPTION = {
-   credentials: true,
-   origin: process.env.MODE === "dev" ? ["http://localhost:3000", "http://127.0.0.1:3000"] : process.env.CORS_ORIGIN,
+   origin: process.env.CORS_ORIGIN,
    optionsSuccessStatus: 200,
 };
 
